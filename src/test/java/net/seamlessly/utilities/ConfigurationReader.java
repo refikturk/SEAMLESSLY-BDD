@@ -1,4 +1,4 @@
-package com.cydeo.utilities;
+package net.seamlessly.utilities;
 
 import java.io.FileInputStream;
 import java.io.IOException;

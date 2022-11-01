@@ -1,4 +1,4 @@
-package com.cydeo.runners;
+package net.seamlessly.runners;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;

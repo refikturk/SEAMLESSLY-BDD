@@ -1,4 +1,4 @@
-package com.cydeo.utilities;
+package net.seamlessly.utilities;
 
 import org.junit.Assert;
 import org.openqa.selenium.*;
@@ -473,5 +473,7 @@ for given duration
     public static void waitForPresenceOfElement(By by, long time) {
         new WebDriverWait(Driver.getDriver(), time).until(ExpectedConditions.presenceOfElementLocated(by));
     }
+
+
 
 }
