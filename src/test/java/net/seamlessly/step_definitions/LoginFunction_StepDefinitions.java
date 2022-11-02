@@ -32,12 +32,7 @@ public class LoginFunction_StepDefinitions {
         loginPage.password.sendKeys(str);
     }
 
-    @When("user clicks on log in button")
-    public void user_clicks_on_log_in_button() {
-        loginPage.loginButton.click();
-    }
-
-    @Then("user should see the dashboard")
+      @Then("user should see the dashboard")
     public void user_should_see_the_dashboard() {
         Assert.assertTrue(loginPage.user_should_see_the_dashboard());
     }
@@ -84,7 +79,8 @@ public class LoginFunction_StepDefinitions {
 
     @When("User types any value to password {string}")
     public void user_types_any_value_to_password(String string) {
-       loginPage.password.sendKeys("Employee123");
+
+       loginPage.password.sendKeys(ConfigurationReader.getProperty("validPass"));
     }
 
     @Then("Verify that the password is invisible")
@@ -101,5 +97,22 @@ public class LoginFunction_StepDefinitions {
     @And("user press enter")
     public void userPressEnter() {
         loginPage.loginButton.sendKeys(Keys.ENTER);
+    }
+
+    @And("user should see a warning message {string}")
+    public void userShouldSeeAWarningMessage(String expectedMessage) {
+        loginPage.wrongUsernameOrPasswordMessage(expectedMessage);
+    }
+
+    @And("User clicks on the visible button next to the password placeholder")
+    public void userClicksOnTheVisibleButtonNextToThePasswordPlaceholder() {
+        loginPage.makeVisibleButton.click();
+    }
+
+    @Then("Verify that the password is visible")
+    public void verifyThatThePasswordIsVisible() {
+
+        String textType = loginPage.password.getAttribute("type");
+        Assert.assertTrue(textType.equalsIgnoreCase("text"));
     }
 }

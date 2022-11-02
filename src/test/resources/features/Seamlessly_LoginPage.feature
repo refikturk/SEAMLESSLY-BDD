@@ -12,40 +12,54 @@ Feature: user can login with valid credentials
     Then user should see the dashboard
 
     Examples:
-      | UsernameOrEmail | password    | buttonType|
-      | Employee31      | Employee123 | click     |
+      | UsernameOrEmail | password    | buttonType |
+      | Employee31      | Employee123 | click      |
+      | Employee131     | Employee123 | Enter      |
+      | Employee151     | Employee123 |            |
 
 
   @SEAMLES-2429
   Scenario Outline: User can not login with any invalid credentials
     When User types invalid username "<UsernameOrEmail>"
     And User types invalid password to "<password>"
-    And user clicks on log in button
-    And user should see Wrong username or password warning
+    And user clicks on log in button or press enter "<buttonType>"
+    Then user should see a warning message "<expectedMessage>"
 
     Examples:
-      | UsernameOrEmail | password     |
-      | Employee31      | Employee1234 |
+      | UsernameOrEmail | password     |buttonType|expectedMessage|
+      | Employee31      | Employee1234 |Enter     |Wrong username or password.|
+      ##valid username, invalid password
+      | Employee1311    | Employee123  |Click     |Wrong username or password.|
+      ##invalid username, valid password
+      | employeE31      | Employee123  |          |Wrong username or password warning.|
+      ##case insensitive valid username
+
 
 
   @SEAMLES-2430
   Scenario Outline: User should see "Please fill out this field" message if password or username is empty
     When User types empty username "<UsernameOrEmail>"
     And User types empty password to "<password>"
-    And user clicks on log in button
+    And user clicks on log in button or press enter "<buttonType>"
     Then Verify that user sees "<errorOrAlertMessage>"
 
     Examples:
-      | UsernameOrEmail | password    | errorOrAlertMessage         |
-      |                 | Employee123 | Please fill out this field. |
+      | UsernameOrEmail | password    | errorOrAlertMessage         |buttonType|
+      |                 | Employee123 | Please fill out this field. |Enter     |
       ##empty username, valid password
-      | Employee31      |             | Please fill out this field. |
+      | Employee31      |             | Please fill out this field. |click     |
       ##valid username, empty password
-  @wip
+
+  @SEAMLES-2457
   Scenario: User should see password in a form of dots by default
     When User types any value to password "input"
     Then Verify that the password is invisible
 
+    @wip
+    Scenario: User should see the password explicitly if needed
+      When User types any value to password "input"
+      And User clicks on the visible button next to the password placeholder
+      Then Verify that the password is visible
 
 
 

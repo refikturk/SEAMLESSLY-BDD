@@ -25,6 +25,9 @@ public class Seamlessly_LoginPage {
     @FindBy(id = "submit-form")
     public WebElement loginButton;
 
+    @FindBy(xpath = "a[@class='toggle-password']")
+    public WebElement makeVisibleButton;
+
 
     @FindBy(xpath = "//p[@class='warning wrongPasswordMsg']")
     public WebElement wrongUsernameOrPasswordMessage;
@@ -67,6 +70,13 @@ public class Seamlessly_LoginPage {
         } else {
             loginButton.click();
         }
+    }
+
+    public void wrongUsernameOrPasswordMessage(String expectedMessage){
+        String warningMessage =  wrongUsernameOrPasswordMessage.getText();
+        BrowserUtils.sleep(2);
+        Assert.assertTrue(wrongUsernameOrPasswordMessage.isDisplayed());
+        Assert.assertEquals(expectedMessage, warningMessage);
     }
 
 }
