@@ -4,19 +4,19 @@ Feature: user can login with valid credentials
     Given user is on the Seamlessly login page
 
 
-  @2428
+  @SEAMLES-2428
   Scenario Outline: user should be able to login successfully with valid credentials
     When user types valid username "<UsernameOrEmail>"
     And user types valid password to "<password>"
-    And user clicks on log in button
-    And user should see the dashboard
-    Then  user should log out
-    Examples:
-      | UsernameOrEmail | password    |
-      | Employee31      | Employee123 |
-      | Employee131     | Employee123 |
+    And user clicks on log in button or press enter "<buttonType>"
+    Then user should see the dashboard
 
-  @2429
+    Examples:
+      | UsernameOrEmail | password    | buttonType|
+      | Employee31      | Employee123 | click     |
+
+
+  @SEAMLES-2429
   Scenario Outline: User can not login with any invalid credentials
     When User types invalid username "<UsernameOrEmail>"
     And User types invalid password to "<password>"
@@ -26,13 +26,9 @@ Feature: user can login with valid credentials
     Examples:
       | UsernameOrEmail | password     |
       | Employee31      | Employee1234 |
-      ##valid username, invalid password
-      | Employee1311    | Employee123  |
-      ##invalid username, valid password
-      | employeE31      | Employee123  |
-      ##case insensitive valid username
 
-  @2430
+
+  @SEAMLES-2430
   Scenario Outline: User should see "Please fill out this field" message if password or username is empty
     When User types empty username "<UsernameOrEmail>"
     And User types empty password to "<password>"

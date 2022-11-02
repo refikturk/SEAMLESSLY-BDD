@@ -1,5 +1,6 @@
 package net.seamlessly.step_definitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -7,6 +8,7 @@ import net.seamlessly.pages.Seamlessly_LoginPage;
 import net.seamlessly.utilities.ConfigurationReader;
 import net.seamlessly.utilities.Driver;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -88,5 +90,16 @@ public class LoginFunction_StepDefinitions {
     @Then("Verify that the password is invisible")
     public void verifyThatThePasswordIsInvisible() {
         Assert.assertTrue(loginPage.password.getAttribute("type").contains("password"));
+    }
+
+
+    @And("user clicks on log in button or press enter {string}")
+    public void userClicksOnLogInButtonOrPressEnter(String buttonType){
+        loginPage.userClicksOnLogInButtonOrPressEnter(buttonType);
+    }
+
+    @And("user press enter")
+    public void userPressEnter() {
+        loginPage.loginButton.sendKeys(Keys.ENTER);
     }
 }

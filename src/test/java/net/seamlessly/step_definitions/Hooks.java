@@ -8,6 +8,8 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class Hooks {
 
+
+
     @After
     public void teardownScenario(Scenario scenario) { //scenario object is capable to follow scenario steps
 
@@ -17,6 +19,13 @@ public class Hooks {
             scenario.attach(screenshot, "image/png", scenario.getName());
         }
 
+
+        Driver.closeDriver();
+
+
     }
+
+
+
 
 }

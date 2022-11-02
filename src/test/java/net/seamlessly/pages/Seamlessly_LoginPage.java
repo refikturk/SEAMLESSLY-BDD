@@ -4,6 +4,7 @@ import net.seamlessly.utilities.BrowserUtils;
 import net.seamlessly.utilities.ConfigurationReader;
 import net.seamlessly.utilities.Driver;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,11 +22,8 @@ public class Seamlessly_LoginPage {
     @FindBy(name = "password")
     public WebElement password;
 
-    @FindBy(css = "input[value='Log in']")
+    @FindBy(id = "submit-form")
     public WebElement loginButton;
-
-    @FindBy(xpath = "//li[@data-id='logout']")
-    public WebElement logOutButton;
 
 
     @FindBy(xpath = "//p[@class='warning wrongPasswordMsg']")
@@ -44,8 +42,8 @@ public class Seamlessly_LoginPage {
 
     public boolean user_should_see_the_dashboard() {
         String dashboard = Driver.getDriver().getCurrentUrl();
-        boolean login = dashboard.contains("dashboard");
-        return login;
+        boolean isloggedIn = dashboard.contains("dashboard");
+        return isloggedIn;
     }
 
 
@@ -61,5 +59,14 @@ public class Seamlessly_LoginPage {
 
     }
 
+    public void userClicksOnLogInButtonOrPressEnter(String clickType) {
+        if (clickType.equalsIgnoreCase("enter")) {
+            loginButton.sendKeys(Keys.ENTER);
+        } else if (clickType.equalsIgnoreCase("click")) {
+            loginButton.click();
+        } else {
+            loginButton.click();
+        }
+    }
 
 }
