@@ -2,7 +2,7 @@ Feature: User should be able to log out successfully
 
   Background: User is on the dashboard page
     Given User is on the dashboard page
-
+  @wip
   Scenario: User should be able to log out and ends up in login page
     When  User clicks on profile menu button
     And User clicks on log out button

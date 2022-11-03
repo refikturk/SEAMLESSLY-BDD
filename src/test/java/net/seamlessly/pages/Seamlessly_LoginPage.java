@@ -44,6 +44,8 @@ public class Seamlessly_LoginPage {
 
     public void loginSeamlessly() {
         this.username.sendKeys("Employee31");
+        BrowserUtils.sleep(1);
+        this.password.sendKeys("Employee123");
         this.loginButton.click();
     }
 

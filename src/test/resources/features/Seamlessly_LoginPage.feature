@@ -1,4 +1,4 @@
-@loginTest
+@SEAMLES-2472
 Feature: user can login with valid credentials
 
   Background: user is on the Seamlessly login page
