@@ -5,6 +5,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.seamlessly.pages.Seamlessly_LoginPage;
+import net.seamlessly.utilities.BrowserUtils;
 import net.seamlessly.utilities.ConfigurationReader;
 import net.seamlessly.utilities.Driver;
 import org.junit.Assert;
@@ -22,14 +23,14 @@ public class LoginFunction_StepDefinitions {
     }
 
     @When("user types valid username {string}")
-    public void userTypesValidUsername(String arg0) {
-        loginPage.username.sendKeys(arg0);
+    public void userTypesValidUsername(String userName) {
+        loginPage.username.sendKeys(userName);
     }
 
 
     @When("user types valid password to {string}")
-    public void user_types_valid_password_to(String str) {
-        loginPage.password.sendKeys(str);
+    public void user_types_valid_password_to(String password) {
+        loginPage.password.sendKeys(password);
     }
 
       @Then("user should see the dashboard")
@@ -45,13 +46,13 @@ public class LoginFunction_StepDefinitions {
 //    }
 
     @When("User types invalid username {string}")
-    public void user_types_invalid_username(String string) {
-        loginPage.username.sendKeys(string);
+    public void user_types_invalid_username(String username) {
+        loginPage.username.sendKeys(username);
     }
 
     @When("User types invalid password to {string}")
-    public void user_types_invalid_password_to(String string) {
-        loginPage.password.sendKeys(string);
+    public void user_types_invalid_password_to(String password) {
+        loginPage.password.sendKeys(password);
     }
 
     @When("user should see Wrong username or password warning")
@@ -62,12 +63,12 @@ public class LoginFunction_StepDefinitions {
     }
 
     @When("User types empty username {string}")
-    public void user_types_invalid_empty_username(String string) {
-        loginPage.username.sendKeys(string);
+    public void user_types_invalid_empty_username(String username) {
+        loginPage.username.sendKeys(username);
     }
     @When("User types empty password to {string}")
-    public void user_types_invalid_empty_password_to(String string) {
-        loginPage.password.sendKeys(string);
+    public void user_types_invalid_empty_password_to(String password) {
+        loginPage.password.sendKeys(password);
     }
 
     @Then("Verify that user sees {string}")
@@ -78,8 +79,7 @@ public class LoginFunction_StepDefinitions {
     }
 
     @When("User types any value to password {string}")
-    public void user_types_any_value_to_password(String string) {
-
+    public void user_types_any_value_to_password(String password) {
        loginPage.password.sendKeys(ConfigurationReader.getProperty("validPass"));
     }
 
@@ -114,5 +114,30 @@ public class LoginFunction_StepDefinitions {
 
         String textType = loginPage.password.getAttribute("type");
         Assert.assertTrue(textType.equalsIgnoreCase("text"));
+    }
+
+    @When("User should see the Forgot Password link")
+    public void user_should_see_the_forgot_password_link() {
+       Assert.assertTrue(loginPage.forgotPasswordLink.isDisplayed());
+    }
+    @When("User clicks on the Forgot Password link")
+    public void user_clicks_on_the_forgot_password_link() {
+        loginPage.forgotPasswordLink.click();
+    }
+    @Then("User should see the Reset Password button")
+    public void user_should_see_the_reset_password_button() {
+        BrowserUtils.sleep(2);
+        Assert.assertTrue(loginPage.resetPasswordButton.isDisplayed());
+
+    }
+
+    @When("Verify that Username placeholder is displayed as expected")
+    public void verifyThatUsernamePlaceholderIsDisplayedAsExpected() {
+        Assert.assertEquals(loginPage.expectedUsernamePlaceholder,loginPage.username.getAttribute("placeholder"));
+    }
+
+    @Then("Verify that Password placeholder is displayed as expected")
+    public void verifyThatPasswordPlaceholderIsDisplayedAsExpected() {
+        Assert.assertEquals(loginPage.expectedPasswordPlaceholder,loginPage.password.getAttribute("placeholder"));
     }
 }

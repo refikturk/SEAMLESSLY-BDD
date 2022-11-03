@@ -25,12 +25,22 @@ public class Seamlessly_LoginPage {
     @FindBy(id = "submit-form")
     public WebElement loginButton;
 
-    @FindBy(xpath = "a[@class='toggle-password']")
+    @FindBy(xpath = "//img[@alt='Toggle password visibility']")
     public WebElement makeVisibleButton;
 
 
     @FindBy(xpath = "//p[@class='warning wrongPasswordMsg']")
     public WebElement wrongUsernameOrPasswordMessage;
+
+    @FindBy(id = "lost-password")
+    public WebElement forgotPasswordLink;
+
+    @FindBy(id = "reset-password-submit")
+    public WebElement resetPasswordButton;
+
+    public String expectedUsernamePlaceholder = "Username or email";
+
+    public String expectedPasswordPlaceholder = "Password";
 
     public void loginSeamlessly() {
         this.username.sendKeys("Employee31");

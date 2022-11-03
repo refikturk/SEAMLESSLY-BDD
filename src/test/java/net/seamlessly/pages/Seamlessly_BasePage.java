@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public abstract class Seamlessly_BasePage {
 
-    public Seamlessly_BasePage(){
+    public Seamlessly_BasePage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 
@@ -44,12 +44,6 @@ public abstract class Seamlessly_BasePage {
 
     @FindBy(xpath = "(//li[@data-id='contacts'])[1]/following-sibling::li[4]")
     public WebElement tasksModule;
-
-    // public void loginSeamlessly(){
-    //     this.username.sendKeys("Employee31");
-//        this.loginButton.click();
-    //  }
-
 
 
 }
