@@ -46,4 +46,5 @@ public abstract class Seamlessly_BasePage {
     public WebElement tasksModule;
 
 
+
 }
