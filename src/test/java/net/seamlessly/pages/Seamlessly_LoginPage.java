@@ -49,9 +49,11 @@ public class Seamlessly_LoginPage {
         this.loginButton.click();
     }
 
+    //This method gets username from configuration.properties files
+    //Logins with responsive username and password
     public void loginSeamlessly(String usernameOrMail, String validPass) {
-        username.sendKeys(ConfigurationReader.getProperty("username1"));
-        password.sendKeys(ConfigurationReader.getProperty("validPass"));
+        username.sendKeys(ConfigurationReader.getProperty(usernameOrMail));
+        password.sendKeys(ConfigurationReader.getProperty(validPass));
         loginButton.click();
     }
 

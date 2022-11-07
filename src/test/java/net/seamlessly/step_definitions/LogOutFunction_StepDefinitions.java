@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.seamlessly.pages.Dashboard_Page;
 import net.seamlessly.pages.Seamlessly_LoginPage;
+import net.seamlessly.utilities.ConfigurationReader;
 import net.seamlessly.utilities.Driver;
 import org.junit.Assert;
 
@@ -16,8 +17,8 @@ public class LogOutFunction_StepDefinitions {
     @Given("User is on the dashboard page")
     public void user_is_on_the_dashboard_page() {
         Driver.getDriver().get("https://qa.seamlessly.net/");
-        loginPage.loginSeamlessly("usernameOrMail","validPass");
-        Assert.assertTrue(dashboardPage.dashboardText.getText().contains("Refik Turk"));
+        loginPage.loginSeamlessly("username4", "validPass");
+        Assert.assertTrue(dashboardPage.dashboardText.getText().contains(ConfigurationReader.getProperty("user4")));
     }
 
     @When("User clicks on profile menu button")
@@ -27,7 +28,7 @@ public class LogOutFunction_StepDefinitions {
 
     @When("User clicks on log out button")
     public void user_clicks_on_log_out_button() {
-       dashboardPage.logOutButton.click();
+        dashboardPage.logOutButton.click();
     }
 
     @Then("User should end up in login page")
@@ -42,7 +43,7 @@ public class LogOutFunction_StepDefinitions {
 
     @Then("User should be still on the login page")
     public void user_should_be_still_on_the_login_page() {
-       Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("login"));
+        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("login"));
     }
 
 
