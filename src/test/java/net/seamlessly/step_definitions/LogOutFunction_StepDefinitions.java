@@ -16,7 +16,7 @@ public class LogOutFunction_StepDefinitions {
     @Given("User is on the dashboard page")
     public void user_is_on_the_dashboard_page() {
         Driver.getDriver().get("https://qa.seamlessly.net/");
-        loginPage.loginSeamlessly();
+        loginPage.loginSeamlessly("usernameOrMail","validPass");
         Assert.assertTrue(dashboardPage.dashboardText.getText().contains("Refik Turk"));
     }
 

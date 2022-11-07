@@ -50,7 +50,7 @@ public class Seamlessly_LoginPage {
     }
 
     public void loginSeamlessly(String usernameOrMail, String validPass) {
-        username.sendKeys(ConfigurationReader.getProperty("usernameOrMail"));
+        username.sendKeys(ConfigurationReader.getProperty("username1"));
         password.sendKeys(ConfigurationReader.getProperty("validPass"));
         loginButton.click();
     }
